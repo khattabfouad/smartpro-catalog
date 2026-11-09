@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>المحاسب الذكي برو — كتالوج النظام</title>
+<style>
+@font-face { font-family: "Cairo"; src: url("cairo.ttf"); font-weight: 200 1000; }
+@font-face { font-family: "Tajawal"; src: url("tajawal.ttf"); }
+@font-face { font-family: "Almarai"; src: url("almarai.ttf"); }
+
+:root {
+  --blue: #0B4F9F;
+  --blue-d: #073A78;
+  --blue-l: #E8F0FA;
+  --orange: #F39200;
+  --orange-d: #C46F00;
+  --orange-l: #FFF4E3;
+  --ink: #1F2933;
+  --muted: #52606D;
+  --line: #D9E2EC;
+  --green: #1E8E5A;
+  --red: #C53030;
+}
+@page { size: A4; margin: 16mm 15mm 16mm 15mm; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "Tajawal", "Cairo", sans-serif;
+  font-size: 10.6pt; line-height: 1.75; color: var(--ink); background: #fff;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+h1, h2, h3, h4 { font-family: "Cairo", sans-serif; margin: 0; line-height: 1.4; }
+p { margin: 0 0 6pt; }
+.page-break { break-before: page; }
+.keep { break-inside: avoid; }
+
+/* ---------- Cover ---------- */
+.cover {
+  height: 265mm; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  background: linear-gradient(160deg, var(--blue-d) 0%, var(--blue) 55%, #1565C0 100%);
+  color: #fff; border-radius: 6mm;
+}
+.cover::before, .cover::after {
+  content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.06);
+}
+.cover::before { width: 160mm; height: 160mm; top: -60mm; left: -50mm; }
+.cover::after { width: 120mm; height: 120mm; bottom: -40mm; right: -30mm; background: rgba(243,146,0,.16); }
+.cover .logo-wrap { width: 46mm; height: 46mm; border-radius: 12mm; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(0,0,0,.25); z-index: 1; }
+.cover .logo-wrap img { width: 36mm; }
+.cover h1 { font-size: 34pt; font-weight: 800; margin-top: 10mm; z-index: 1; }
+.cover .tag { font-size: 15pt; opacity: .95; z-index: 1; margin-top: 2mm; }
+.cover .doc-type { margin-top: 12mm; z-index: 1; background: var(--orange); color: #fff; font-family: "Cairo"; font-weight: 700; font-size: 14pt; padding: 3mm 9mm; border-radius: 30mm; }
+.cover .cover-sub { z-index: 1; margin-top: 6mm; font-size: 11.5pt; max-width: 140mm; opacity: .92; }
+.cover .cover-foot { position: absolute; bottom: 12mm; z-index: 1; font-size: 10pt; opacity: .85; display: flex; gap: 8mm; }
+.cover .pill-row { display: flex; gap: 3mm; margin-top: 10mm; z-index: 1; flex-wrap: wrap; justify-content: center; max-width: 150mm; }
+.cover .pill { border: 1px solid rgba(255,255,255,.45); border-radius: 20mm; padding: 1.2mm 5mm; font-size: 10pt; }
+
+/* ---------- Generic ---------- */
+.section-title { font-size: 20pt; color: var(--blue); font-weight: 800; margin-bottom: 4mm; }
+.lead { font-size: 11.6pt; color: var(--muted); margin-bottom: 5mm; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.5mm; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+
+.toc { margin-top: 2mm; }
+.toc .part { font-family: "Cairo"; font-weight: 800; font-size: 12.5pt; margin: 6mm 0 2mm; padding: 2mm 4mm; border-radius: 2mm; color: #fff; background: var(--blue); }
+.toc .part.ease { background: var(--orange); }
+.toc .row { display: flex; align-items: baseline; gap: 3mm; padding: 1.6mm 2mm; border-bottom: 1px dashed var(--line); }
+.toc .num { font-family: "Cairo"; font-weight: 800; color: var(--blue); min-width: 9mm; }
+.toc .part.ease + .row .num, .toc .ease-row .num { color: var(--orange-d); }
+.toc .t { font-weight: 700; }
+.toc .d { color: var(--muted); font-size: 9.6pt; margin-right: auto; }
+
+.stat { border-radius: 3mm; padding: 4mm; text-align: center; background: var(--blue-l); }
+.stat b { display: block; font-family: "Cairo"; font-size: 20pt; color: var(--blue); line-height: 1.2; }
+.stat span { font-size: 9.6pt; color: var(--muted); }
+.stat.o { background: var(--orange-l); }
+.stat.o b { color: var(--orange-d); }
+
+.audience { border: 1px solid var(--line); border-radius: 3mm; padding: 3.5mm; }
+.audience h4 { color: var(--blue); font-size: 11pt; margin-bottom: 1mm; }
+.audience p { font-size: 9.6pt; color: var(--muted); margin: 0; }
+
+/* ---------- Part divider ---------- */
+.part-page { height: 262mm; display: flex; flex-direction: column; justify-content: center; padding: 0 14mm; border-radius: 6mm; color: #fff; position: relative; overflow: hidden; }
+.part-page.fin { background: linear-gradient(150deg, var(--blue-d), var(--blue)); }
+.part-page.ease { background: linear-gradient(150deg, #B86500, var(--orange)); }
+.part-page .pn { font-family: "Cairo"; font-size: 14pt; opacity: .85; }
+.part-page h1 { font-size: 32pt; font-weight: 800; margin: 3mm 0 5mm; }
+.part-page p { font-size: 12.5pt; opacity: .95; max-width: 150mm; }
+.part-page ul { margin-top: 8mm; padding: 0; list-style: none; columns: 2; column-gap: 10mm; }
+.part-page li { font-family: "Cairo"; font-weight: 700; font-size: 12pt; padding: 2mm 0; border-bottom: 1px solid rgba(255,255,255,.25); break-inside: avoid; }
+.part-page li span { opacity: .7; margin-left: 3mm; }
+.part-page .big { position: absolute; left: 10mm; bottom: -8mm; font-family: "Cairo"; font-size: 120pt; font-weight: 900; opacity: .1; }
+
+/* ---------- Chapter ---------- */
+.chapter-head { display: flex; align-items: center; gap: 5mm; padding: 5mm 6mm; border-radius: 4mm; background: var(--blue); color: #fff; margin-bottom: 5mm; }
+.chapter-head .cn { font-family: "Cairo"; font-size: 26pt; font-weight: 900; line-height: 1; opacity: .9; min-width: 14mm; text-align: center; border-left: 1px solid rgba(255,255,255,.35); padding-left: 5mm; }
+.chapter-head h2 { font-size: 19pt; font-weight: 800; }
+.chapter-head p { margin: 0; font-size: 10.4pt; opacity: .92; }
+.ease .chapter-head { background: var(--orange); }
+
+.feature { border: 1px solid var(--line); border-right: 4px solid var(--blue); border-radius: 3mm; padding: 3.5mm 4.5mm; margin-bottom: 3.5mm; break-inside: avoid; background: #fff; }
+.ease .feature { border-right-color: var(--orange); }
+.feature h3 { font-size: 13pt; color: var(--blue-d); font-weight: 800; margin-bottom: 1mm; display: flex; align-items: center; gap: 2mm; }
+.ease .feature h3 { color: var(--orange-d); }
+.feature h3 .badge { font-family: "Tajawal"; font-size: 8.6pt; font-weight: 700; background: var(--blue-l); color: var(--blue); padding: .3mm 2.5mm; border-radius: 10mm; }
+.ease .feature h3 .badge { background: var(--orange-l); color: var(--orange-d); }
+.feature > p { color: #334E68; }
+.feature ul, .feature ol { margin: 1mm 0 0; padding-right: 5mm; }
+.feature li { margin-bottom: .6mm; }
+.feature li b { color: var(--ink); }
+
+.steps { counter-reset: s; list-style: none; padding: 0 !important; margin-top: 2mm !important; }
+.steps li { counter-increment: s; position: relative; padding-right: 8mm; margin-bottom: 1.4mm; }
+.steps li::before { content: counter(s); position: absolute; right: 0; top: .5mm; width: 5.6mm; height: 5.6mm; border-radius: 50%; background: var(--blue); color: #fff; font-family: "Cairo"; font-weight: 700; font-size: 8.6pt; line-height: 5.6mm; text-align: center; }
+.ease .steps li::before { background: var(--orange); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 1.6mm; margin-top: 2mm; }
+.chip { font-size: 9pt; padding: .4mm 2.6mm; border-radius: 10mm; background: #F0F4F8; color: #334E68; border: 1px solid var(--line); }
+
+.tip { border-radius: 3mm; padding: 3mm 4mm; margin: 2.5mm 0 3.5mm; background: var(--blue-l); border: 1px dashed #9DB8DC; font-size: 10pt; break-inside: avoid; }
+.tip b:first-child { color: var(--blue); font-family: "Cairo"; }
+.ease .tip { background: var(--orange-l); border-color: #F5C77E; }
+.ease .tip b:first-child { color: var(--orange-d); }
+.warn { background: #FFF5F5; border-color: #F5A3A3; }
+.warn b:first-child { color: var(--red) !important; }
+
+table.t { width: 100%; border-collapse: collapse; margin: 2mm 0 1mm; font-size: 9.6pt; break-inside: avoid; }
+table.t th { background: var(--blue); color: #fff; font-family: "Cairo"; font-weight: 700; padding: 1.6mm 2mm; text-align: right; }
+.ease table.t th { background: var(--orange); }
+table.t td { border-bottom: 1px solid var(--line); padding: 1.4mm 2mm; vertical-align: top; }
+table.t tr:nth-child(even) td { background: #F8FAFC; }
+
+/* flow diagram */
+.flow { display: flex; align-items: stretch; gap: 1.5mm; margin: 3mm 0; break-inside: avoid; }
+.flow .node { flex: 1; border-radius: 3mm; padding: 2.5mm 2mm; text-align: center; background: var(--blue-l); border: 1px solid #BFD3EE; font-size: 9.4pt; }
+.flow .node b { display: block; font-family: "Cairo"; color: var(--blue-d); font-size: 10pt; }
+.flow .arrow { align-self: center; color: var(--orange); font-size: 14pt; font-weight: 900; }
+.ease .flow .node { background: var(--orange-l); border-color: #F5C77E; }
+.ease .flow .node b { color: var(--orange-d); }
+
+.hier { display: flex; flex-direction: column; gap: 1.5mm; margin: 2mm 0; }
+.hier div { border-radius: 2.5mm; padding: 2mm 4mm; font-size: 9.8pt; }
+.hier .l1 { background: var(--blue); color: #fff; margin-left: 30mm; }
+.hier .l2 { background: #3F7CC4; color: #fff; margin-left: 15mm; margin-right: 15mm; }
+.hier .l3 { background: #9DB8DC; color: var(--ink); margin-right: 30mm; }
+
+/* samples */
+.samples { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.sample { border: 1px solid var(--line); border-radius: 3mm; padding: 3mm; text-align: center; background: #F8FAFC; break-inside: avoid; }
+.sample .frame { background: #fff; border-radius: 2mm; overflow: hidden; box-shadow: 0 2px 10px rgba(16,42,67,.12); }
+.sample img { width: 100%; display: block; }
+.sample .crop { height: 82mm; overflow: hidden; }
+.sample .crop img { width: 100%; }
+.sample .cap { font-family: "Cairo"; font-weight: 700; font-size: 10pt; margin-top: 2mm; color: var(--blue-d); }
+.sample .cap span { display: block; font-family: "Tajawal"; font-weight: 400; font-size: 9pt; color: var(--muted); }
+
+.price-card { border-radius: 5mm; padding: 7mm; color: #fff; background: linear-gradient(150deg, var(--blue-d), var(--blue)); text-align: center; }
+.price-card .amount { font-family: "Cairo"; font-size: 40pt; font-weight: 900; line-height: 1.1; }
+.price-card .per { opacity: .9; }
+.free-card { border-radius: 5mm; padding: 7mm; text-align: center; background: var(--orange-l); border: 2px solid var(--orange); }
+.free-card .amount { font-family: "Cairo"; font-size: 40pt; font-weight: 900; color: var(--orange-d); line-height: 1.1; }
+
+.back { height: 262mm; border-radius: 6mm; background: linear-gradient(160deg, var(--blue-d), var(--blue)); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.back .logo-wrap { width: 34mm; height: 34mm; border-radius: 9mm; background: #fff; display: flex; align-items: center; justify-content: center; }
+.back .logo-wrap img { width: 26mm; }
+.back h2 { font-size: 24pt; margin-top: 7mm; }
+.back p { opacity: .92; font-size: 12pt; max-width: 140mm; }
+.back .cta { margin-top: 8mm; background: var(--orange); padding: 3mm 10mm; border-radius: 20mm; font-family: "Cairo"; font-weight: 800; font-size: 13pt; }
+.small { font-size: 9pt; color: var(--muted); }
+.mt { margin-top: 4mm; }
+</style>
+</head>
+<body>
+
+<!-- ======================= COVER ======================= -->
+<section class="cover">
+  <div class="logo-wrap"><img src="img/logo.png" alt=""></div>
+  <h1>المحاسب الذكي برو</h1>
+  <div class="tag">التطبيق المحاسبي الأول في الوطن العربي</div>
+  <div class="doc-type">كتالوج النظام والدليل التفصيلي للميزات</div>
+  <div class="cover-sub">شرح دقيق لكل ميزة في النظام: ماذا تفعل، وكيف تعمل خطوة بخطوة، وما الذي يميّزها، من دليل الحسابات حتى بوابة الويب والنسخ السحابي.</div>
+  <div class="pill-row">
+    <span class="pill">حسابات وصناديق</span><span class="pill">سندات وقيود</span><span class="pill">فواتير وكاشير</span>
+    <span class="pill">مخازن وجرد</span><span class="pill">ذهب وعملات</span><span class="pill">تقارير</span>
+    <span class="pill">طباعة حرارية</span><span class="pill">بوابة ويب</span><span class="pill">نسخ سحابي</span>
+  </div>
+  <div class="cover-foot"><span>الإصدار 2026</span><span>•</span><span>Android</span><span>•</span><span>أربع لغات: العربية · English · Français · Türkçe</span></div>
+</section>
+
+<!-- ======================= TOC ======================= -->
+<section class="page-break">
+  <div class="section-title">المحتويات</div>
+  <div class="toc">
+    <div class="row"><span class="num">—</span><span class="t">تعريف بالنظام</span><span class="d">لمن صُمّم التطبيق، وأرقامه الأساسية، ودورة المستند</span></div>
+
+    <div class="part">الجزء الأول: الميزات المحاسبية والمالية</div>
+    <div class="row"><span class="num">01</span><span class="t">الحسابات والصناديق</span><span class="d">دليل الحسابات، الصندوق الافتراضي، كشف الحساب، الفلاتر</span></div>
+    <div class="row"><span class="num">02</span><span class="t">السندات والقيود المحاسبية</span><span class="d">القبض والصرف، القيد المركب، الحوالات، المصارفة</span></div>
+    <div class="row"><span class="num">03</span><span class="t">الفواتير والمبيعات</span><span class="d">البيع والشراء، المردودات، العروض، الكاشير، المقاسات</span></div>
+    <div class="row"><span class="num">04</span><span class="t">المخازن والأصناف</span><span class="d">الوحدات، الكمية الافتتاحية، استيراد Excel، الجرد، الأرشفة</span></div>
+    <div class="row"><span class="num">05</span><span class="t">الذهب والعملات</span><span class="d">العيارات والأوزان، تحويل العيارات، المصارفة في التقارير</span></div>
+    <div class="row"><span class="num">06</span><span class="t">التقارير المالية</span><span class="d">الحركة اليومية، ميزان المراجعة، الضرائب، الخدمات، المخازن</span></div>
+
+    <div class="part ease">الجزء الثاني: ميزات التسهيل والإضافات الذكية</div>
+    <div class="row ease-row"><span class="num">07</span><span class="t">الإدخال الذكي والسريع</span><span class="d">الإدخال الصوتي، قراءة الحوالات، الباركود، البحث، المسودات</span></div>
+    <div class="row ease-row"><span class="num">08</span><span class="t">الطباعة والتصدير والمشاركة</span><span class="d">الطابعات الحرارية، طابور الطباعة، PDF وExcel، الملصقات</span></div>
+    <div class="row ease-row"><span class="num">09</span><span class="t">بوابة الويب</span><span class="d">تشغيل التطبيق من الكمبيوتر، المستخدمون والصلاحيات</span></div>
+    <div class="row ease-row"><span class="num">10</span><span class="t">النسخ الاحتياطي وحماية البيانات</span><span class="d">النسخ اليومي، Google Drive، تليجرام، القفل، السلة</span></div>
+    <div class="row ease-row"><span class="num">11</span><span class="t">المراسلة والتنبيهات</span><span class="d">ثلاث قنوات، القوالب، طابور الرسائل، مواعيد السداد</span></div>
+    <div class="row ease-row"><span class="num">12</span><span class="t">التخصيص وتجربة الاستخدام</span><span class="d">المعالج، أزرار الرئيسية، الأنظمة الفرعية، الودجت، المظهر</span></div>
+
+    <div class="row" style="margin-top:6mm"><span class="num">—</span><span class="t">نماذج حقيقية من مطبوعات النظام</span><span class="d">فاتورة A4، فاتورة حرارية، سند، كشف حساب</span></div>
+    <div class="row"><span class="num">—</span><span class="t">التفعيل والاشتراك والدعم</span><span class="d">الفترة التجريبية، الرسوم، نقل التفعيل، قناة الشرح</span></div>
+  </div>
+</section>
+
+<!-- ======================= INTRO ======================= -->
+<section class="page-break">
+  <div class="section-title">تعريف بالنظام</div>
+  <p class="lead">المحاسب الذكي برو نظام محاسبي متكامل يعمل على الجوال، يجمع في تطبيق واحد ما تحتاجه المنشأة الصغيرة والمتوسطة: الحسابات، والسندات، والفواتير، والمخازن، والتقارير، والطباعة، والرسائل للعملاء. صُمّم ليكون دقيقاً محاسبياً، وسريعاً في الإدخال اليومي، وآمناً على البيانات.</p>
+
+  <div class="grid4 keep">
+    <div class="stat"><b>4</b><span>لغات للواجهة والمطبوعات</span></div>
+    <div class="stat"><b>3</b><span>مقاسات طباعة أساسية: A4 و80 و58 ملم</span></div>
+    <div class="stat o"><b>3</b><span>قنوات رسائل: الشريحة، واتساب، الفورية</span></div>
+    <div class="stat o"><b>250</b><span>عملية مجانية للتجربة</span></div>
+  </div>
+
+  <h3 class="mt" style="color:var(--blue);font-size:14pt;margin-bottom:2mm">لمن صُمّم التطبيق؟</h3>
+  <div class="grid3">
+    <div class="audience keep"><h4>المحلات التجارية والبقالات</h4><p>فواتير بيع وشراء، كاشير سريع بالباركود، مخازن وجرد، وديون العملاء مع رسائل المطالبة.</p></div>
+    <div class="audience keep"><h4>الصرافة والحوالات</h4><p>سندات الحوالات الواردة والصادرة بعمولاتها، صرف العملات، وقراءة رسالة الحوالة تلقائياً.</p></div>
+    <div class="audience keep"><h4>محلات الذهب والمجوهرات</h4><p>العيارات والأوزان، أرصدة بالوزن لكل عيار، وتحويل العيارات في سند واحد.</p></div>
+    <div class="audience keep"><h4>الألمنيوم والزجاج والستائر</h4><p>فواتير المقاسات بالطول والعرض أو المساحة والارتفاع، بقوالب لكل نوع عمل.</p></div>
+    <div class="audience keep"><h4>مقدمو الخدمات والأعمال الحرة</h4><p>فواتير حرة وخدمية بلا مخزون، وتقرير ربح لكل خدمة.</p></div>
+    <div class="audience keep"><h4>الحسابات الشخصية والديون</h4><p>متابعة من لك ومن عليك بكل عملة، مع تنبيهات مواعيد السداد.</p></div>
+  </div>
+
+  <h3 class="mt" style="color:var(--blue);font-size:14pt;margin-bottom:1mm">دورة المستند في النظام</h3>
+  <p class="small">كل سند أو فاتورة يمر بنفس الدورة، ولذلك تبقى الأرصدة صحيحة دائماً:</p>
+  <div class="flow">
+    <div class="node"><b>اختيار الحساب</b>يُحدَّد الصندوق والعملة تلقائياً</div><div class="arrow">←</div>
+    <div class="node"><b>الإدخال</b>بالكتابة أو الصوت أو الباركود</div><div class="arrow">←</div>
+    <div class="node"><b>التحقق</b>التوازن وسقف المديونية والمخزون</div><div class="arrow">←</div>
+    <div class="node"><b>الحفظ الذرّي</b>يُحفظ المستند كاملاً أو لا شيء</div><div class="arrow">←</div>
+    <div class="node"><b>الرسالة والطباعة</b>إشعار العميل وطباعة فورية</div>
+  </div>
+
+  <div class="tip"><b>الحفظ الذرّي:</b> المستندات المكوّنة من عدة أسطر (القيد المركب، الفاتورة، سند الجرد، تحويل العيارات، الكمية الافتتاحية) تُحفظ في معاملة واحدة. إذا تعذّر حفظ أي سطر يُلغى المستند كله، فلا يبقى قيد ناقص أو رصيد مختل.</div>
+
+  <h3 class="mt" style="color:var(--blue);font-size:14pt;margin-bottom:2mm">طريقة قراءة هذا الكتالوج</h3>
+  <p>ينقسم الكتالوج إلى جزأين: <b>الجزء الأول</b> (اللون الأزرق) للميزات المحاسبية التي يقوم عليها العمل اليومي، و<b>الجزء الثاني</b> (اللون البرتقالي) للإضافات التي تختصر الوقت وتحمي البيانات. في كل ميزة تجد وصفها، وخطوات استخدامها، وتفاصيلها الدقيقة، ونصائح عملية في المربعات الملوّنة.</p>
+</section>
+
+<!-- ======================= PART 1 ======================= -->
+<section class="page-break part-page fin">
+  <div class="pn">الجزء الأول</div>
+  <h1>الميزات المحاسبية والمالية</h1>
+  <p>نظام محاسبي متكامل يغطي الحسابات والمستندات والمخازن والتقارير بدقة واحترافية. هذا هو قلب التطبيق الذي تُبنى عليه كل الإضافات.</p>
+  <ul>
+    <li><span>01</span>الحسابات والصناديق</li>
+    <li><span>02</span>السندات والقيود المحاسبية</li>
+    <li><span>03</span>الفواتير والمبيعات</li>
+    <li><span>04</span>المخازن والأصناف</li>
+    <li><span>05</span>الذهب والعملات</li>
+    <li><span>06</span>التقارير المالية</li>
+  </ul>
+  <div class="big">1</div>
+</section>
+
+<!-- ======================= CH 01 ======================= -->
+<section class="page-break fin">
+  <div class="chapter-head"><div class="cn">01</div><div><h2>الحسابات والصناديق</h2><p>الأساس الذي تُبنى عليه كل الحركات: من لك، ومن عليك، وأين نقدك.</p></div></div>
+
+  <div class="feature">
+    <h3>دليل حسابات هرمي <span class="badge">أساسي</span></h3>
+    <p>تُنظَّم الحسابات في مستويين: <b>حسابات رئيسية</b> (تصنيفات مثل العملاء، الموردين، المصروفات) تظهر كبطاقات في الشاشة الرئيسية، وتحت كل منها <b>حسابات فرعية</b> (العميل أو المورد نفسه). يظهر رصيد كل حساب لحظياً وبكل عملة.</p>
+    <div class="chips"><span class="chip">بطاقات الحسابات الرئيسية في الرئيسية</span><span class="chip">أرصدة لحظية</span><span class="chip">تعدد العملات</span><span class="chip">صورة لكل حساب رئيسي</span><span class="chip">بحث فوري</span></div>
+  </div>
+
+  <div class="feature">
+    <h3>فتح الحسابات بسهولة</h3>
+    <ol class="steps">
+      <li>من الحساب الرئيسي اضغط إضافة حساب، أو اختر جهة اتصال من دليل الهاتف لتُعبّأ البيانات تلقائياً.</li>
+      <li>حدّد <b>سقف المديونية</b>: يمنع النظام أي سند أو فاتورة آجلة تتجاوزه.</li>
+      <li>أدخل <b>الرصيد الافتتاحي</b> إن كان للحساب رصيد سابق.</li>
+      <li>اختر طريقة إرسال الرسائل للحساب: دائماً، أو يدوياً، أو لا ترسل، وقناة الإرسال (الفصل 11).</li>
+      <li>اختيارياً: حدّد <b>الصندوق الافتراضي</b> لهذا الحساب.</li>
+    </ol>
+    <div class="tip"><b>استيراد الحسابات:</b> يمكن استيراد قائمة الحسابات كاملة من ملف Excel مع أرصدتها الافتتاحية، بدل إدخالها حساباً حساباً.</div>
+  </div>
+
+  <div class="feature">
+    <h3>الصناديق والمصارف والصندوق الافتراضي الهرمي</h3>
+    <p>أنشئ ما تحتاجه من صناديق (صندوق الكاشير، صندوق المدير، حساب البنك). عند إنشاء أي مستند جديد يختار النظام الصندوق تلقائياً حسب الحساب، وفق ثلاثة مستويات:</p>
+    <div class="hier">
+      <div class="l1"><b>1. الحساب الفرعي:</b> إذا خُصّص للعميل أو المورد صندوق، يُستخدم هو.</div>
+      <div class="l2"><b>2. الحساب الرئيسي:</b> وإلا صندوق التصنيف الذي ينتمي إليه الحساب.</div>
+      <div class="l3"><b>3. افتراضي النظام:</b> وإلا الصندوق المعلَّم افتراضياً.</div>
+    </div>
+    <p class="small">يُطبَّق ذلك على سند القبض والصرف، والحوالة، وصرف العملات، والفاتورة، والمردود، والسداد السريع. عند <b>تعديل</b> مستند قديم لا يتغير صندوقه المحفوظ أبداً، ويبقى بإمكانك تغيير الصندوق يدوياً في أي وقت.</p>
+  </div>
+
+  <div class="feature">
+    <h3>كشف حساب تفصيلي</h3>
+    <p>يعرض لكل حساب: الرصيد الافتتاحي للفترة، وكل حركة مدينة ودائنة ببيانها، والرصيد التراكمي بعد كل حركة. يمكن اختيار الفترة (يومي، شهري، سنوي، الكل، أو من تاريخ إلى تاريخ) والتنقل بين الفترات بزرّي السابق والتالي.</p>
+    <ul>
+      <li><b>طباعة وتصدير:</b> PDF بمقاس A4 أو حراري، وExcel، أو مشاركة مباشرة.</li>
+      <li><b>نقل السندات ونسخها:</b> حدّد عدة سندات ثم انقلها إلى حساب آخر (مع سعر صرف اختياري عند اختلاف العملة)، أو إلى صندوق آخر، أو انسخها إلى حساب آخر. تتم العملية كاملة في معاملة واحدة.</li>
+      <li><b>المصارفة بعملة واحدة:</b> خيار "مصارفة الكل بعملة..." يحوّل كل الحركات إلى العملة الافتراضية ويجمعها (الفصل 05).</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>فلاتر أرصدة الحسابات</h3>
+    <p>زر الفلتر في شاشة أرصدة الحسابات يعرض قائمة جاهزة، وتتحدث معها الإجماليات والطباعة لتطابق المعروض:</p>
+    <div class="chips"><span class="chip">الكل</span><span class="chip">المدينون</span><span class="chip">الدائنون</span><span class="chip">الحسابات المصفّرة</span><span class="chip">المتجاوزون لسقف المديونية</span><span class="chip">المتأخرون عن تاريخ</span><span class="chip">الحسابات المجمّدة حتى تاريخ</span><span class="chip">مدين بأكثر من مبلغ</span><span class="chip">مدين بأقل من مبلغ</span><span class="chip">أرصدة الذهب فقط</span></div>
+    <p class="small mt">يبقى الفلتر النشط مطبّقاً بعد إضافة سند والعودة، ويتلوّن زره ليذكّرك بأن القائمة مفلترة.</p>
+  </div>
+
+  <div class="feature">
+    <h3>مصادقة الأرصدة وإغلاق الحسابات</h3>
+    <p>أرسل للعميل رسالة برصيده لمطابقته، وعند نهاية التعامل أو الفترة أغلق الحساب ورحّل رصيده بأمان، مع بقاء كل حركاته السابقة في الكشف.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 02 ======================= -->
+<section class="page-break fin">
+  <div class="chapter-head"><div class="cn">02</div><div><h2>السندات والقيود المحاسبية</h2><p>كل حركة نقدية أو آجلة لها مستند واضح، مكتوب مبلغه بالحروف، وقابل للطباعة والإرسال.</p></div></div>
+
+  <div class="feature">
+    <h3>سندات القبض والصرف <span class="badge">أساسي</span></h3>
+    <ol class="steps">
+      <li>اختر الحساب، فيظهر رصيده السابق ويُحدَّد الصندوق تلقائياً.</li>
+      <li>أدخل المبلغ بالعملة المطلوبة وسعر الصرف المباشر إن كانت غير المحلية.</li>
+      <li>يُكتب المبلغ بالحروف تحت الحقل فوراً ويتحدّث مع كل تعديل.</li>
+      <li>أدخل البيان (بالكتابة أو بالصوت) وأرفق صورة إن أردت، ثم احفظ.</li>
+    </ol>
+    <div class="tip"><b>التفقيط الصحيح لغوياً:</b> محرك مستقل لكل لغة. في العربية يراعي التمييز والمثنى والجمع ("ثلاثمائة"، "ثلاثة آلاف"، "مليونان")، وفي الفرنسية والتركية قواعدهما الخاصة. للذهب تُكتب الأوزان بالجرام والملي بثلاث منازل.</div>
+  </div>
+
+  <div class="feature">
+    <h3>القيد البسيط</h3>
+    <p>تحويل مبلغ من حساب إلى حساب في سند واحد (مثل تسوية بين عميل ومورد)، مع اسم الطرف في بيان كل جهة.</p>
+  </div>
+
+  <div class="feature">
+    <h3>القيد المركب (قيد يومية متعدد الأطراف)</h3>
+    <p>قيد واحد يجمع عدة أطراف مدينة وعدة أطراف دائنة بعملة واحدة، ولا يُحفظ إلا إذا تساوى المدين والدائن.</p>
+    <ol class="steps">
+      <li>تُفتح الشاشة بسطرين: مدين ثم دائن. أضف ما تشاء بزرّي "إضافة مدين" و"إضافة دائن" (اختيار حسابات متعدد).</li>
+      <li>لكل سطر: الحساب ورصيده الحالي، المبلغ، بيان خاص، وزر لتبديل الجانب.</li>
+      <li>ملخص التوازن يتحدّث فوراً: مجموع المدين، مجموع الدائن، الفرق، وحالة "القيد متوازن وجاهز للحفظ".</li>
+      <li>عند وجود فرق يظهر زر <b>الموازنة التلقائية</b> ليضيف سطراً بالفرق في الجانب الأصغر.</li>
+      <li>الحفظ بعد التأكيد، في معاملة واحدة، ثم يُفرَّغ النموذج لقيد جديد.</li>
+    </ol>
+    <p class="small">عند حذف أي سطر من قيد مركب من التقارير يسألك النظام: هل تريد حذف القيد بجميع أطرافه؟</p>
+  </div>
+
+  <div class="feature">
+    <h3>الإشعارات المدينة والدائنة</h3>
+    <p>مستندات مستقلة لتسوية أرصدة الحسابات (خصم ممنوح، فرق سعر، تصحيح رصيد) دون الحاجة لفاتورة أو سند نقدي.</p>
+  </div>
+
+  <div class="feature">
+    <h3>سندات الحوالات الواردة والصادرة</h3>
+    <p>سند مخصص للحوالات يسجّل المرسل والمستلم وشركة التحويل والمبلغ والعمولة، فتُقيَّد الحوالة على الحساب والعمولة في سطرها الخاص. ويمكن تعبئة السند كاملاً بلصق رسالة الحوالة (الفصل 07).</p>
+  </div>
+
+  <div class="feature">
+    <h3>صرف العملات</h3>
+    <p>سند يبيع أو يشتري عملة مقابل أخرى: تختار العملتين، فيُقترح سعر البيع أو الشراء لكل منهما، ويُحسب المبلغ الناتج ويُكتب بالحروف، ويمكن تنفيذه على الحساب أو في الصندوق.</p>
+  </div>
+
+  <div class="feature">
+    <h3>التحويل بين الصناديق</h3>
+    <p>نقل السيولة من صندوق إلى آخر (مثلاً من الكاشير إلى البنك) بسند مستقل يظهر في تقارير الصناديق.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 03 ======================= -->
+<section class="page-break fin">
+  <div class="chapter-head"><div class="cn">03</div><div><h2>الفواتير والمبيعات</h2><p>من فاتورة البيع العادية إلى الكاشير السريع وفواتير المقاسات، بكل ما تحتاجه من خصم وضريبة ووحدات.</p></div></div>
+
+  <div class="feature">
+    <h3>فواتير البيع والشراء <span class="badge">أساسي</span></h3>
+    <ol class="steps">
+      <li>اختر النوع: بيع أو شراء، نقدي أو آجل. في النقدي يُختار الصندوق، وفي الآجل يُقيَّد على حساب العميل أو المورد.</li>
+      <li>اختر المخزن والعملة وسعرها.</li>
+      <li>أضف الأصناف بالبحث بالاسم، أو بقارئ الباركود، أو بالصوت، واختر الوحدة (حتى ثلاث وحدات لكل صنف).</li>
+      <li>عدّل الكمية والسعر والخصم لكل صنف إن لزم، وحدّد خصم الفاتورة وضريبتها (نسبة أو مبلغ).</li>
+      <li>أدخل المبلغ الواصل فيُحسب المتبقي تلقائياً، ثم احفظ واطبع.</li>
+    </ol>
+    <div class="chips"><span class="chip">خصم على الصنف وعلى الفاتورة</span><span class="chip">ضريبة على الصافي</span><span class="chip">منع البيع بأكثر من المتوفر (اختياري)</span><span class="chip">فحص سقف المديونية</span><span class="chip">اقتراح تواريخ الصلاحية</span><span class="chip">تحويل البيع إلى شراء والعكس</span></div>
+    <div class="tip"><b>تواريخ الصلاحية:</b> عند اختيار صنف مؤرَّخ يقترح النظام تواريخ الصلاحية السابقة له ويحدّد أولها، مع الرصيد المتاح لكل تاريخ. عدد الاقتراحات قابل للضبط من 1 إلى 10 (الافتراضي 3).</div>
+  </div>
+
+  <div class="feature">
+    <h3>المردودات (مرتجع المبيعات والمشتريات)</h3>
+    <p>إرجاع بضاعة مباعة أو مشتراة مع إعادة الكمية للمخزن وتسوية الحساب تلقائياً. والأسرع: زر <b>"استدعاء من فاتورة سابقة"</b>:</p>
+    <ol class="steps">
+      <li>تظهر فواتير البيع (أو الشراء) السابقة لنفس الحساب مع بحث بالرقم والتاريخ والبيان.</li>
+      <li>تختار الفاتورة فتظهر أصنافها محددة مسبقاً، فتلغي ما لا تريد وتعدّل الكميات.</li>
+      <li>لا يقبل النظام كمية أكبر من الكمية الأصلية في الفاتورة.</li>
+      <li>تُضاف الأصناف للمرتجع <b>بنسبة الخصم والضريبة الأصليتين</b>.</li>
+    </ol>
+  </div>
+
+  <div class="feature">
+    <h3>عروض الأسعار والطلبيات</h3>
+    <p>عروض أسعار للعملاء وطلبيات من الموردين بمستندات مستقلة لا تؤثر على الأرصدة أو المخزون، تُطبع وتُرسل، ثم <b>تُصدَر منها فاتورة مباشرة</b> عند الموافقة دون إعادة إدخال الأصناف.</p>
+  </div>
+
+  <div class="feature">
+    <h3>الفواتير الحرة والخدمية</h3>
+    <p>فواتير بلا مخزون: تكتب البيان والوحدة والكمية والسعر بحرية. تناسب الخدمات والصيانة والأعمال الحرة، ولها تقرير ربح مستقل لكل خدمة (الفصل 06).</p>
+  </div>
+
+  <div class="feature">
+    <h3>الكاشير والبيع السريع (POS)</h3>
+    <p>شاشة مصممة لنقطة البيع: عدة فواتير معلّقة متوازية (تذاكر) لخدمة أكثر من زبون في نفس الوقت.</p>
+    <ul>
+      <li><b>إضافة الأصناف:</b> ماسح كاميرا مستمر أو قارئ باركود خارجي، أو البحث بالاسم، أو شبكة <b>الأصناف السريعة</b> مع رصيد كل صنف تحتها.</li>
+      <li><b>السلة:</b> دمج الصنف المكرر، و+ و− للكمية، وتعديل السعر بنقرة، ومنع البيع بأقل من التكلفة.</li>
+      <li><b>الدفع:</b> نقدي على العميل النقدي الافتراضي، أو آجل على حساب عميل.</li>
+      <li><b>الحفظ:</b> "حفظ" أو "حفظ وطباعة". تنتقل التذكرة للحفظ في الخلفية وتُفتح التالية فوراً، وإن تعذّر الحفظ تعود التذكرة كما كانت.</li>
+      <li><b>الاستعادة:</b> التذاكر المعلّقة تُحفظ تلقائياً وتعود بعد إغلاق التطبيق.</li>
+    </ul>
+    <div class="tip"><b>قبل أول استخدام:</b> من "إعدادات الكاشير" حدّد العميل النقدي الافتراضي، والمخزن، والصندوق، والعملة، والأصناف السريعة.</div>
+  </div>
+
+  <div class="feature">
+    <h3>فواتير المقاسات والتمتير</h3>
+    <p>لمهن الألمنيوم والزجاج والستائر والمفروشات. تُنظَّم الفواتير تحت <b>قوالب</b>، والقالب يحدد طريقة الحساب:</p>
+    <table class="t"><tr><th>نوع القالب</th><th>البعد الأول</th><th>البعد الثاني</th></tr>
+      <tr><td>طول × عرض</td><td>الطول</td><td>العرض</td></tr>
+      <tr><td>مساحة × ارتفاع</td><td>المساحة</td><td>الارتفاع</td></tr>
+      <tr><td>أخرى</td><td>تسمية حرة</td><td>تسمية حرة</td></tr></table>
+    <p class="small">لكل بند: البعدان، والمساحة (تُحسب تلقائياً وتقبل التعديل)، والكمية، والسعر، والاسم والتفاصيل مع اقتراحات من البنود السابقة. الوحدة سنتيمتر أو متر، وخيار "حد أدنى متر" يرفع البند الأصغر من متر مربع إلى متر. الشريط السفلي يعرض عدد الأمتار وعدد القطع والإجمالي.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 04 ======================= -->
+<section class="page-break fin">
+  <div class="chapter-head"><div class="cn">04</div><div><h2>المخازن والأصناف</h2><p>بطاقة دقيقة لكل صنف، وأرصدة صحيحة في كل مخزن، وجرد يكشف الفروقات ويسوّيها.</p></div></div>
+
+  <div class="feature">
+    <h3>دليل الأصناف <span class="badge">أساسي</span></h3>
+    <ul>
+      <li><b>ثلاث وحدات</b> لكل صنف (مثلاً حبة، علبة، كرتون) بمعامل تحويل وسعر بيع لكل وحدة، ووحدة افتراضية.</li>
+      <li><b>أسعار البيع والشراء</b>، والباركود، والعملة، وصورة الصنف.</li>
+      <li><b>تاريخ الصلاحية</b> للأصناف المؤرَّخة، وتتبع الرصيد لكل تاريخ.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>الكمية الافتتاحية التلقائية</h3>
+    <p>عند إضافة صنف جديد اكتب <b>الكمية الافتتاحية</b> واختر <b>مخزن التوريد</b>، فيُنشئ النظام سند توريد مخزني تلقائياً ويظهر الرصيد فوراً في التقارير والجرد. يُحفظ الصنف والسند معاً أو لا يُحفظ أي منهما.</p>
+  </div>
+
+  <div class="feature">
+    <h3>استيراد الأصناف من Excel</h3>
+    <p>أدخل مئات الأصناف دفعة واحدة من ملف Excel بنموذج ثابت: الاسم، والباركود، والوحدات الثلاث ومعاملاتها وأسعارها، والوحدة الافتراضية، وتاريخ الانتهاء، والعملة، و<b>الكمية الافتتاحية</b> (عمود اختياري).</p>
+    <ol class="steps">
+      <li>اختر الملف، ثم مخزن التوريد.</li>
+      <li>يجري الاستيراد في الخلفية، ويُنشأ <b>سند توريد واحد مجمّع</b> لكل الأصناف التي لها كمية.</li>
+      <li>الأصناف الموجودة مسبقاً بنفس الاسم تُعرض لك في النهاية: تتجاهلها، أو تعدّل بياناتها من الملف.</li>
+    </ol>
+  </div>
+
+  <div class="feature">
+    <h3>المخازن المتعددة والتحويلات المخزنية</h3>
+    <p>أنشئ ما تحتاجه من مخازن (المحل، المستودع، الفرع)، وانقل البضاعة بينها بسند تحويل مخزني، مع رصيد كل صنف في كل مخزن.</p>
+  </div>
+
+  <div class="feature">
+    <h3>الجرد المخزني وتسوية الفروقات</h3>
+    <p>جلسات جرد لكل مخزن، بنمطين: <b>إجمالي</b> لرصيد الصنف كاملاً، أو <b>حسب تاريخ الصلاحية</b> لكل دفعة على حدة.</p>
+    <ol class="steps">
+      <li>أنشئ جلسة: المخزن، والنمط، والعنوان، واختيارياً <b>الجرد الأعمى</b>.</li>
+      <li>أدخل الكميات الفعلية: بالكتابة، أو بـ + و−، أو بزر <b>المطابقة السريعة</b>، أو بمسح الباركود (كل مسحة = +1).</li>
+      <li>تابع بالفلاتر: الكل، العجز، الفائض، المطابق، غير المجرود، مع ملخص "تم جرد X من Y".</li>
+      <li>اعتمد الجرد: يُنشأ تلقائياً <b>سند إدخال للفائض</b> و<b>سند إخراج للعجز</b>، وتُقفل الجلسة للقراءة.</li>
+    </ol>
+    <ul>
+      <li><b>الجرد الأعمى:</b> يخفي الأرصدة الدفترية والفروقات عن العادّ حتى الاعتماد، لنزاهة العد.</li>
+      <li><b>الصنف غير المجرود:</b> لا يُعامل كعجز، بل يسألك النظام عند الاعتماد: تجاهله أم اعتباره صفراً.</li>
+      <li><b>دقة التسوية:</b> يُعاد حساب الرصيد الحالي لحظة الاعتماد، وينبّهك إن تغيّر رصيد بنود منذ بدء الجرد.</li>
+      <li><b>الحفظ التلقائي</b> للمسودة عند مغادرة الشاشة، وتصدير ورقة الجرد PDF أو Excel.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>أرشفة فواتير المخزن</h3>
+    <p>من شاشة المخازن اعرض فواتير المخزن وأرشف القديمة منها: تبقى الفاتورة في الحسابات وأرصدة العملاء، وتُستبعد كمياتها من المخزن. ويمكن إلغاء الأرشفة لإعادة الكميات.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 05 ======================= -->
+<section class="page-break fin">
+  <div class="chapter-head"><div class="cn">05</div><div><h2>الذهب والعملات</h2><p>نظام كامل لتجار الذهب، وعملات متعددة بأسعار صرف واضحة في كل مستند وتقرير.</p></div></div>
+
+  <div class="feature">
+    <h3>نظام الذهب <span class="badge">نظام فرعي</span></h3>
+    <p>وضع تشغيل خاص بالصاغة يُفعَّل من "إعدادات تطبيق الذهب". عند تفعيله تظهر:</p>
+    <ul>
+      <li><b>العيارات:</b> قائمة بالاسم والرمز والقيمة. البيانات الأولية: عيار 21 وعيار 24 وعيار 18.</li>
+      <li><b>نوع الحساب:</b> مالي فقط، أو أوزان فقط، أو الجميع (نقد ووزن)، فيعرض السند الحقول المناسبة.</li>
+      <li><b>السند بالوزن:</b> حقل الوزن ومنتقي العيار، والرصيد السابق بالمبلغ وبالوزن لنفس العيار.</li>
+      <li><b>الفواتير بالوزن:</b> وزن لكل بند، مع خيار اعتماد إجمالي الوزن بدل الكمية.</li>
+      <li><b>أرصدة الوزن</b> لكل عيار في كشف الحساب والتقارير وحركة الصندوق.</li>
+      <li><b>مصطلحات قابلة للتغيير:</b> تستبدل كلمتي "ذهب" و"جرام" بما يناسب نشاطك.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>تحويل العيارات</h3>
+    <ol class="steps">
+      <li>اختر الحساب، والعيار المصدر وسعره، والعيار الهدف وسعره.</li>
+      <li>أدخل الوزن، فيُحسب الوزن المقابل تلقائياً، ويمكن تعديله.</li>
+      <li>حدّد الاتجاه (له أو عليه) والبيان، ثم احفظ: يُنشأ سندان في معاملة واحدة.</li>
+    </ol>
+  </div>
+
+  <div class="feature">
+    <h3>تعدد العملات</h3>
+    <p>أضف ما تشاء من عملات، لكل منها اسم واسم كسر (ريال/فلس، دولار/سنت) ورمز وسعر بيع وسعر شراء. كل سند وفاتورة يحفظ سعر الصرف لحظة إدخاله، والرصيد يظهر لكل عملة على حدة.</p>
+  </div>
+
+  <div class="feature">
+    <h3>المصارفة بالعملة الافتراضية في التقارير</h3>
+    <p>في كشف الحساب وأرصدة الحسابات خيار <b>"مصارفة الكل بعملة..."</b> يحوّل كل الحركات بمختلف عملاتها إلى العملة الافتراضية المختارة في الإعدادات ويجمعها في رصيد واحد، مع التفقيط والطباعة بتلك العملة. وعند فتح مستند من الكشف يعود لعملته الأصلية.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 06 ======================= -->
+<section class="page-break fin">
+  <div class="chapter-head"><div class="cn">06</div><div><h2>التقارير المالية</h2><p>كل تقرير بفترة قابلة للاختيار (يومي، شهري، سنوي، الكل، من–إلى)، وبعملة محددة، وجاهز للطباعة والتصدير.</p></div></div>
+
+  <div class="feature">
+    <h3>الحركة اليومية</h3>
+    <p>كل الحركات النقدية والآجلة لجميع الحسابات في تقرير واحد، مع إمكانية تحديد عدة سندات لنقلها أو نسخها أو طباعتها.</p>
+  </div>
+
+  <div class="feature">
+    <h3>ميزان المراجعة المبسّط</h3>
+    <p>بطاقة واحدة تلخّص وضع المنشأة لفترة محددة في عشرة مؤشرات ملوّنة:</p>
+    <table class="t">
+      <tr><th>المؤشر</th><th>المعنى</th></tr>
+      <tr><td>إجمالي المدين (لكم) وإجمالي الدائن (عليكم)</td><td>مجموع أرصدة الحسابات</td></tr>
+      <tr><td>إجمالي النقدية في الصناديق والبنوك</td><td>السيولة المتوفرة</td></tr>
+      <tr><td>قيمة بضاعة آخر المدة</td><td>قيمة المخزون</td></tr>
+      <tr><td>صافي الأرصدة والنتيجة</td><td>فائض (أرباح مرحّلة) أو عجز (خسائر)</td></tr>
+      <tr><td>المبيعات والمشتريات وصافي الربح</td><td>نتيجة النشاط في الفترة</td></tr>
+      <tr><td>نسبة السيولة النقدية</td><td>النقدية إلى الالتزامات، بمنزلتين عشريتين</td></tr>
+    </table>
+  </div>
+
+  <div class="feature">
+    <h3>تقرير أرباح الفواتير</h3>
+    <p>ربح كل فاتورة بمقارنة سعر البيع بسعر التكلفة، وإجمالي الأرباح خلال الفترة.</p>
+  </div>
+
+  <div class="feature">
+    <h3>تقرير الإجمالي حسب التصنيف</h3>
+    <p>يجمع حركات الفترة حسب نوع المستند: المقبوضات، والمصروفات، والمبيعات، والمشتريات، والمبيعات الخدمية، والمشتريات الحرة، ومردودات البيع والشراء، والحوالات الواردة والصادرة وعمولاتها. يعمل بثلاثة أوضاع: النقدية (لصندوق محدد أو كل الصناديق)، والآجلة، وكل الحركات.</p>
+  </div>
+
+  <div class="feature">
+    <h3>تقارير الصناديق</h3>
+    <p>حركة التدفق النقدي، والذهبي في نظام الذهب، لكل صندوق وكل عملة: الوارد والمنصرف والرصيد.</p>
+  </div>
+
+  <div class="feature">
+    <h3>تقارير المخازن والأصناف</h3>
+    <ul>
+      <li><b>تقييم المخزون</b> بسعر الشراء وبسعر البيع لكل مخزن.</li>
+      <li><b>كشف حركة صنف:</b> تتبّع الصنف في فواتير البيع والشراء والمردودات والتحويلات.</li>
+      <li><b>الإجمالي حسب التصنيف</b> لأصناف المخزن.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>التقارير الضريبية</h3>
+    <p>مبلغ الضريبة لكل فاتورة بيع أو شراء أو مردود في الفترة، مع إجمالي ضريبة المبيعات وضريبة المشتريات وصافي الضريبة المستحقة.</p>
+  </div>
+
+  <div class="feature">
+    <h3>تقرير الخدمات</h3>
+    <p>لكل خدمة في الفواتير الحرة: الكمية المشتراة والمبيعة، ومتوسط سعر الشراء والبيع، والربح، مع إجمالي "بيع، شراء، ربح أو خسارة". يُصدَّر PDF أو Excel.</p>
+  </div>
+</section>
+
+<!-- ======================= PART 2 ======================= -->
+<section class="page-break part-page ease">
+  <div class="pn">الجزء الثاني</div>
+  <h1>ميزات التسهيل والإضافات الذكية</h1>
+  <p>أدوات إضافية تختصر وقتك وتجعل عملك أسرع وأسهل وأكثر أماناً. هنا يظهر الفرق بين برنامج محاسبة عادي ومحاسب ذكي.</p>
+  <ul>
+    <li><span>07</span>الإدخال الذكي والسريع</li>
+    <li><span>08</span>الطباعة والتصدير والمشاركة</li>
+    <li><span>09</span>بوابة الويب</li>
+    <li><span>10</span>النسخ الاحتياطي وحماية البيانات</li>
+    <li><span>11</span>المراسلة والتنبيهات</li>
+    <li><span>12</span>التخصيص وتجربة الاستخدام</li>
+  </ul>
+  <div class="big">2</div>
+</section>
+
+<!-- ======================= CH 07 ======================= -->
+<section class="page-break ease">
+  <div class="chapter-head"><div class="cn">07</div><div><h2>الإدخال الذكي والسريع</h2><p>أقل كتابة ممكنة: تكلّم، أو الصق، أو امسح، والتطبيق يكمل الباقي.</p></div></div>
+
+  <div class="feature">
+    <h3>الإدخال الصوتي والإملاء <span class="badge">مميز</span></h3>
+    <p>اضغط زر الميكروفون وانطق المبلغ أو البيان أو اسم الصنف، فيكتبه التطبيق في الحقل. يعمل بالعربية والإنجليزية، ويوجد في شاشات السندات والقيود والفواتير.</p>
+    <div class="tip"><b>مثال:</b> في سند قبض، انطق "استلام دفعة من حساب شهر نوفمبر" بدل كتابتها، وفي الفاتورة انطق اسم الصنف لتظهر نتائج البحث مباشرة.</div>
+  </div>
+
+  <div class="feature">
+    <h3>قراءة الحوالات تلقائياً <span class="badge">مميز</span></h3>
+    <div class="flow">
+      <div class="node"><b>انسخ</b>رسالة الحوالة من الرسائل أو واتساب</div><div class="arrow">←</div>
+      <div class="node"><b>الصق</b>بزر "لصق رسالة وتعبئة البيانات"</div><div class="arrow">←</div>
+      <div class="node"><b>استخراج</b>المرسل، المستلم، الشركة، المبلغ، العمولة</div><div class="arrow">←</div>
+      <div class="node"><b>راجع واحفظ</b>السند معبّأ وجاهز</div>
+    </div>
+    <p class="small">يوفّر دقائق في كل حوالة، ويمنع أخطاء النقل اليدوي للأسماء والأرقام.</p>
+  </div>
+
+  <div class="feature">
+    <h3>قارئ الباركود بالكاميرا</h3>
+    <p>امسح باركود الصنف بكاميرا الجوال لإضافته إلى الفاتورة أو الكاشير أو جلسة الجرد، أو استخدم قارئ باركود خارجياً. في الكاشير يعمل الماسح بشكل مستمر مع صوت تأكيد لكل صنف.</p>
+  </div>
+
+  <div class="feature">
+    <h3>البحث السريع الشامل</h3>
+    <p>بحث فوري في الحسابات والأصناف والمستندات من مكان واحد، ونتائج تتحدّث مع كل حرف.</p>
+  </div>
+
+  <div class="feature">
+    <h3>حفظ المسودات تلقائياً</h3>
+    <p>أصناف الفاتورة وعرض السعر والتحويل المخزني قبل حفظها لا تضيع إذا دوّرت الشاشة، أو خرجت إلى تطبيق آخر وأغلق النظام التطبيق في الخلفية. تعود إلى الشاشة نفسها بنفس الأصناف، دون أي سؤال.</p>
+  </div>
+
+  <div class="feature">
+    <h3>لمسات توفّر الوقت</h3>
+    <ul>
+      <li><b>تحديث وقت المستند</b> تلقائياً عند العودة لشاشة إدخال بقيت مفتوحة طويلاً.</li>
+      <li><b>المنازل العشرية</b> قابلة للضبط في حقلي السعر والإجمالي.</li>
+      <li><b>تثبيت فترة التقرير</b> لكل حساب، فيُفتح كشفه دائماً بالفترة التي اخترتها.</li>
+      <li><b>ثبات موضع التمرير:</b> بعد إضافة أو تعديل أو حذف عنصر تبقى القائمة في مكانها ولا تقفز للأعلى.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= CH 08 ======================= -->
+<section class="page-break ease">
+  <div class="chapter-head"><div class="cn">08</div><div><h2>الطباعة والتصدير والمشاركة</h2><p>مطبوعات واضحة بثلاثة مقاسات، وطابعة حرارية تتصل مباشرة، وملفات PDF وExcel جاهزة للمشاركة.</p></div></div>
+
+  <div class="feature">
+    <h3>ربط الطابعة الحرارية مباشرة <span class="badge">مميز</span></h3>
+    <p>اتصال مباشر بطابعات البلوتوث الحرارية (ESC/POS) دون تطبيقات وسيطة. شاشة "إعدادات الطابعة" تمنحك تحكماً كاملاً:</p>
+    <table class="t">
+      <tr><th>الإعداد</th><th>الخيارات</th></tr>
+      <tr><td>وضع الطباعة</td><td>بلوتوث، أو نافذة طباعة النظام، أو PDF</td></tr>
+      <tr><td>مقاس الورق</td><td>ستة مقاسات للورق الحراري</td></tr>
+      <tr><td>ملف تعريف الطابعة</td><td>محمولة، مكتبية، سريعة، أو مخصص (ارتفاع الشريحة وسرعة الإرسال)</td></tr>
+      <tr><td>نمط الصورة</td><td>حديث، أو متوافق مع الطابعات القديمة</td></tr>
+      <tr><td>درجة السواد</td><td>عادي، عالٍ (موصى به)، داكن جداً</td></tr>
+      <tr><td>الورق</td><td>قص الفراغ السفلي، القطع الآلي، أسطر التغذية (0–10)، عدد النسخ (1–5)</td></tr>
+      <tr><td>مهلة التبريد</td><td>بين الفواتير المتتالية: 800 أو 1200 (موصى به) أو 2000 ملّي ثانية</td></tr>
+    </table>
+    <p class="small">زر <b>الطباعة التجريبية</b> يطبع فاتورة نموذجية بلغة التطبيق لتتأكد من الإعدادات قبل العمل.</p>
+  </div>
+
+  <div class="feature">
+    <h3>طابور الطباعة</h3>
+    <p>كل أمر طباعة يدخل طابوراً واحداً متسلسلاً: لا تتصادم فاتورتان، ولا تطبع الطابعة رموزاً عشوائية بسبب الضغط. إن كان أمامك أوامر سابقة تظهر رسالة "تمت إضافة الطباعة إلى الطابور (أمامها n)"، ويعيد النظام المحاولة تلقائياً عند انقطاع الاتصال.</p>
+  </div>
+
+  <div class="feature">
+    <h3>تصدير PDF وExcel احترافي</h3>
+    <ul>
+      <li><b>ترويسة المنشأة:</b> الاسم والعنوان والهاتف بالعربية والإنجليزية مع الشعار، أو صورة ترويسة كاملة.</li>
+      <li><b>ثلاثة مقاسات</b> لكل مستند أساسي: A4، ورول 80، ورول 58.</li>
+      <li><b>بعد التوليد:</b> فتح في عارض، أو طباعة مباشرة، أو مشاركة كملف أو كصورة حسب إعدادك.</li>
+      <li><b>Excel</b> لكشف الحساب والتقارير والجرد وتقرير الخدمات.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>ملصقات الباركود</h3>
+    <p>من شاشة الأصناف حدّد صنفاً أو أكثر واطبع ملصقات تحمل <b>رمز QR</b> للباركود واسم الصنف: ملصق حراري 25×38 ملم بعدد تحدده، أو ورقة A4 بشبكة 6×10.</p>
+  </div>
+
+  <div class="feature">
+    <h3>المشاركة الفورية</h3>
+    <p>أرسل الفاتورة أو السند أو كشف الحساب إلى واتساب أو أي تطبيق بلمسة واحدة، كملف PDF أو صورة.</p>
+  </div>
+</section>
+
+<!-- ======================= SAMPLES ======================= -->
+<section class="page-break ease">
+  <div class="section-title" style="color:var(--orange-d)">نماذج حقيقية من مطبوعات النظام</div>
+  <p class="lead">هذه صور لملفات أنتجها التطبيق فعلاً من بيانات تجريبية، دون أي تعديل.</p>
+  <div class="samples">
+    <div class="sample">
+      <div class="frame crop"><img src="img/bill_A4_ar.png" alt=""></div>
+      <div class="cap">فاتورة بيع آجل بمقاس A4<span>الأصناف والوحدات، الخصم، الواصل والمتبقي، والمبلغ بالحروف</span></div>
+    </div>
+    <div class="sample">
+      <div class="frame crop" style="max-width:52mm;margin:0 auto"><img src="img/bill_80_ar.png" alt=""></div>
+      <div class="cap">الفاتورة نفسها على رول 80 ملم<span>للطابعات الحرارية</span></div>
+    </div>
+    <div class="sample">
+      <div class="frame crop"><img src="img/bound_A4_ar_fullheader.png" alt=""></div>
+      <div class="cap">سند بترويسة كاملة<span>صورة ترويسة المنشأة أعلى المستند</span></div>
+    </div>
+    <div class="sample">
+      <div class="frame crop"><img src="img/statement_A4_ar.png" alt=""></div>
+      <div class="cap">كشف حساب A4<span>الرصيد الافتتاحي والحركات والرصيد التراكمي</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CH 09 ======================= -->
+<section class="page-break ease">
+  <div class="chapter-head"><div class="cn">09</div><div><h2>بوابة الويب</h2><p>شاشة أكبر ولوحة مفاتيح كاملة: افتح بياناتك من متصفح الكمبيوتر، والبيانات تبقى في جوالك.</p></div></div>
+
+  <div class="feature">
+    <h3>إدارة التطبيق من المتصفح <span class="badge">مميز</span></h3>
+    <p>يشغّل التطبيق خادماً محلياً على الجوال، فيفتحه أي متصفح على <b>نفس شبكة الواي فاي أو نقطة الاتصال</b>، دون إنترنت ودون أي برنامج إضافي.</p>
+    <ol class="steps">
+      <li>افتح "خادم الويب المحلي" وفعّل المفتاح (يتطلب واي فاي أو نقطة اتصال).</li>
+      <li>انسخ الرابط الظاهر أو شاركه، وافتحه في متصفح الكمبيوتر.</li>
+      <li>سجّل الدخول باسم مستخدم الويب وكلمة مروره.</li>
+    </ol>
+    <p>تعرض البوابة شاشات التطبيق نفسها: الرئيسية وأزرارها، والحسابات، وكشف الحساب، والحركة اليومية، والأصناف، والجرد، والإدخال (السندات، والحوالات، والتحويل، والمصارفة، والقيد المركب، والفاتورة، وعرض السعر، والكاشير)، بنفس ألوان التطبيق ولغته ووضعه الليلي. أي حفظ من متصفح يظهر في كل المتصفحات المفتوحة خلال ثانية تقريباً.</p>
+  </div>
+
+  <div class="feature">
+    <h3>مستخدمون وصلاحيات</h3>
+    <ul>
+      <li>حساب لكل موظف: الاسم، واسم المستخدم، وكلمة مرور مشفّرة (مع زر توليد)، ورقم هاتف لمشاركة بيانات الدخول.</li>
+      <li>صلاحيات <b>الإضافة والتعديل والحذف</b> (العرض متاح دائماً)، مع قوالب جاهزة: قراءة فقط، مُدخل بيانات، كامل.</li>
+      <li><b>ربط الحساب بجهاز واحد</b> (مفعّل افتراضياً) لمنع الدخول من أجهزة أخرى، مع إمكانية فك الارتباط.</li>
+      <li>مشاركة بيانات الدخول للموظف عبر واتساب أو رسالة نصية مباشرة.</li>
+      <li>أي تعديل على حساب المستخدم يُنهي جلساته المفتوحة فوراً.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>رقابة كاملة من الجوال</h3>
+    <ul>
+      <li><b>الأجهزة المتصلة:</b> قائمة لحظية بكل متصفح متصل، مع زر <b>طرد</b> لكل جهاز.</li>
+      <li><b>وضع القراءة فقط:</b> بمفتاح واحد تُمنع كل عمليات الإضافة والتعديل من كل المتصفحات.</li>
+      <li><b>إشعار دائم</b> أثناء التشغيل بالرابط وعدد الأجهزة، مع زرّي نسخ الرابط والإيقاف.</li>
+      <li>يتوقف الخادم مؤقتاً عند انقطاع الواي فاي ويستأنف تلقائياً عند عودته.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>الطباعة من المتصفح</h3>
+    <p>من رأس البوابة اختر الطابعة: <b>طابعة هذا الجهاز</b> (نافذة طباعة المتصفح)، أو <b>طابعة الهاتف</b> فيُرسل المستند إلى طابور طباعة الجوال وطابعته الحرارية، ويصلك إشعار بالنتيجة.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 10 ======================= -->
+<section class="page-break ease">
+  <div class="chapter-head"><div class="cn">10</div><div><h2>النسخ الاحتياطي وحماية البيانات</h2><p>بياناتك ملكك وحدك، والتطبيق يحرسها من الضياع ومن الحذف الخاطئ.</p></div></div>
+
+  <div class="feature">
+    <h3>نسخ احتياطي يومي تلقائي</h3>
+    <p>ينشئ التطبيق نسخة يومية على ذاكرة الجهاز في مجلد <b>Backup</b> داخل مجلد <b>smart_accountant</b> (في Android 11 وما فوق قد يكون داخل مجلد Documents)، دون أي تدخل منك.</p>
+  </div>
+
+  <div class="feature">
+    <h3>النسخ السحابي على Google Drive <span class="badge">مميز</span></h3>
+    <ul>
+      <li><b>رفع يدوي</b> بضغطة، أو <b>مجدول</b>: كل 6 ساعات، أو 12 ساعة، أو يومياً، أو أسبوعياً، بالوقت الذي تفضّله.</li>
+      <li><b>استعراض نسخ Drive واستعادة إحداها</b>، مع منع استعادة نسخة أحدث من إصدار التطبيق المثبت.</li>
+      <li><b>مجلد الصور المرفقة:</b> ضغطه في ملف ZIP ومشاركته أو رفعه إلى Drive يدوياً أو مجدولاً (يومياً، أسبوعياً، شهرياً)، واستعادته.</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>النسخ إلى تليجرام والمشاركة</h3>
+    <p>أرسل ملف النسخة الاحتياطية إلى تليجرام أو أي تطبيق لتحفظها خارج الجهاز، فتبقى بياناتك آمنة عند ضياع الجوال أو تهيئته.</p>
+    <div class="tip warn"><b>قبل الاستعادة:</b> الاستعادة تستبدل البيانات الحالية ببيانات النسخة المختارة. خذ نسخة احتياطية من الوضع الحالي أولاً، ولا تستعد إلا عند فقد البيانات أو الانتقال من جوال سابق.</div>
+  </div>
+
+  <div class="feature">
+    <h3>قفل التطبيق</h3>
+    <p>احمِ بياناتك بكلمة مرور أو بالبصمة. ومن الإعدادات يمكن أن يشمل القفل اختصارات الشاشة الرئيسية (الودجت)، فلا تُفتح شاشة إدخال منها قبل فك القفل.</p>
+  </div>
+
+  <div class="feature">
+    <h3>سلة المحذوفات</h3>
+    <p>المستندات المحذوفة تنتقل إلى السلة، ومنها تستعيدها أو تفرّغ السلة نهائياً. ولا يستعيد النظام سنداً يشير إلى حساب أو عملة أو صندوق محذوف، بل يوضح لك السبب وطريقة المعالجة.</p>
+  </div>
+
+  <div class="feature">
+    <h3>حماية الحذف</h3>
+    <p>لا يُحذف أي سجل مرجعي (عملة، مخزن، صندوق، حساب، عيار، صنف، قالب مقاسات) ما دامت سجلات أخرى تعتمد عليه. يعرض النظام سبباً واضحاً لكل سجل رُفض حذفه، مثل: «مرتبط بالسندات والفواتير (12). احذف أو انقل هذه السجلات أولاً.»</p>
+  </div>
+
+  <div class="feature">
+    <h3>فحص البيانات ومعالجتها</h3>
+    <p>شاشة "معالجة البيانات" تفحص كل قسم بضغطة: العملات، والمخازن، والصناديق، والحسابات، والعيارات، والأصناف. تكشف السجلات المعلّقة (التي تشير إلى سجل محذوف) وتعالجها بإعادة إنشاء السجل المفقود بنفس رقمه، أو بحذف التابع. ويضم تبويب <b>أسعار الصرف</b> تدقيقاً لأسعار صرف الفواتير وإصلاح الشاذ منها، مع سجل لكل معالجة.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 11 ======================= -->
+<section class="page-break ease">
+  <div class="chapter-head"><div class="cn">11</div><div><h2>المراسلة والتنبيهات</h2><p>عميلك يعرف رصيده بعد كل عملية، وأنت لا تنسى موعد تحصيل.</p></div></div>
+
+  <div class="feature">
+    <h3>الرسائل بثلاث قنوات <span class="badge">مميز</span></h3>
+    <p>لكل حساب تختار قناة الإرسال وطريقته:</p>
+    <table class="t">
+      <tr><th>القناة</th><th>طريقة الإرسال للحساب</th></tr>
+      <tr><td>رسالة نصية عبر شريحة الجوال</td><td><b>دائماً:</b> تُرسل فوراً بعد الحفظ دون سؤال</td></tr>
+      <tr><td>واتساب</td><td><b>يدوياً:</b> يظهر شريط "هل تريد إرسال رسالة للعميل؟"</td></tr>
+      <tr><td>رسائل فورية عبر خادم الرسائل</td><td><b>لا ترسل:</b> يبقى خيار الإرسال اليدوي متاحاً</td></tr>
+    </table>
+    <p>تُرسل الرسائل بعد السند، والقيد، والفاتورة، والحوالة، وصرف العملات، وطلب السداد، وكشف الحساب. وعند مستند بعدة حسابات (قيد مركب أو تحديد متعدد) تُرسل رسالة لكل حساب بالتتابع.</p>
+  </div>
+
+  <div class="feature">
+    <h3>قوالب رسائل قابلة للتعديل</h3>
+    <p>لكل نوع مستند قالب جاهز تعدّله كما تريد بـ <b>17 وسماً</b> يُستبدل تلقائياً (اسم العميل، المبلغ، الرصيد، التاريخ وغيرها)، مع قوالب جاهزة للاختيار وعدّاد لأجزاء الرسالة النصية.</p>
+  </div>
+
+  <div class="feature">
+    <h3>طابور الرسائل الفورية</h3>
+    <p>الرسائل الفورية لا تُرسل دفعة واحدة، بل تدخل طابوراً يرسلها <b>واحدة تلو الأخرى بفاصل زمني</b> (15 ثانية افتراضياً مع تفاوت عشوائي) لحماية رقمك من الحظر. يصمد الطابور بعد إغلاق التطبيق وإعادة تشغيل الجهاز.</p>
+    <div class="chips"><span class="chip">فلاتر: معلقة، مرسلة، فاشلة، ملغاة</span><span class="chip">إرسال الآن</span><span class="chip">إعادة إرسال</span><span class="chip">تعديل الرقم والنص</span><span class="chip">إيقاف واستئناف</span><span class="chip">إعادة محاولة تلقائية</span></div>
+  </div>
+
+  <div class="feature">
+    <h3>التنبيهات المالية ومواعيد السداد</h3>
+    <ol class="steps">
+      <li>أنشئ تنبيهاً لحساب: التاريخ، والوقت (09:00 افتراضياً)، والتكرار (بدون، يومي، أسبوعي، شهري)، والتفاصيل.</li>
+      <li>في الموعد يصلك إشعار "حان موعد السداد: اسم الحساب" بثلاثة أزرار: <b>اكتمل</b>، و<b>تأجيل</b>، و<b>إرسال مطالبة</b> بالرصيد الحالي للعميل.</li>
+      <li>من قائمة التنبيهات: فلاتر (نشطة، متأخرة، مكتملة)، وتأجيل سريع (غداً، يومان، 3 أيام، أسبوع، شهر، أو موعد مخصص)، وتأجيل جماعي.</li>
+    </ol>
+    <p class="small">التكرار الشهري يثبت على يوم الشهر الأصلي: تنبيه 31 يناير يأتي 28 فبراير ثم 31 مارس. والتنبيهات تُعاد جدولتها تلقائياً بعد إعادة تشغيل الجهاز.</p>
+  </div>
+</section>
+
+<!-- ======================= CH 12 ======================= -->
+<section class="page-break ease">
+  <div class="chapter-head"><div class="cn">12</div><div><h2>التخصيص وتجربة الاستخدام</h2><p>التطبيق يتشكّل حسب عملك: ما تحتاجه يظهر، وما لا تحتاجه يختفي.</p></div></div>
+
+  <div class="feature">
+    <h3>معالج الإعداد الأولي</h3>
+    <p>عند أول تشغيل يرشدك المعالج لاختيار نوع النشاط والعملة الافتراضية وتجهيز الحسابات والصناديق الأولية، فتبدأ العمل خلال دقائق.</p>
+  </div>
+
+  <div class="feature">
+    <h3>أزرار رئيسية قابلة للتخصيص</h3>
+    <p>الأزرار التسعة في الشاشة الرئيسية تنفّذ ما تختاره أنت: اضغط مطوّلاً على أي زر لتختار وظيفته من قائمة مصنّفة (السندات والقيود، الفواتير والتجارة، التقارير) مع بحث، مثل: سند جديد، قيد مركب، فاتورة جديدة، الكاشير، جرد المخزون، كشف حساب. وزر "استعادة الافتراضي" يعيدها كما كانت.</p>
+  </div>
+
+  <div class="feature">
+    <h3>الأنظمة الفرعية</h3>
+    <p>فعّل أو عطّل الأنظمة حسب نشاطك: <b>الفواتير والمخازن</b>، و<b>المقاسات والتمتير</b>، و<b>الذهب والمجوهرات</b>. النظام المعطّل تختفي شاشاته وأزراره لتبقى الواجهة بسيطة. ولترتيب بطاقات الحسابات الرئيسية اضغط مطوّلاً على البطاقة واختر: تقديم، أو تأخير، أو نقل إلى موضع محدد.</p>
+  </div>
+
+
+  <div class="feature">
+    <h3>ودجت الشاشة الرئيسية</h3>
+    <p>سبعة اختصارات لشاشة الهاتف: فاتورة جديدة، وسند جديد، وعرض سعر، وحوالة جديدة، وقيد بسيط، وكشف حساب، وودجت إجراءات سريعة يجمع ستة أزرار. ويمكن اشتراط فتح قفل التطبيق قبل تنفيذها.</p>
+  </div>
+
+  <div class="feature">
+    <h3>أربع لغات ومظهر مريح</h3>
+    <ul>
+      <li><b>اللغات:</b> العربية، والإنجليزية، والفرنسية، والتركية، للواجهة والمطبوعات والتفقيط.</li>
+      <li><b>الوضع الداكن</b> والفاتح، وألوان التطبيق قابلة للتغيير.</li>
+      <li><b>خطوط عربية متعددة:</b> Cairo وTajawal وAlmarai وNoto Naskh وAmiri.</li>
+      <li><b>تثبيت حجم الواجهة:</b> لا تتشوه الشاشات إذا كبّرت الخط أو حجم العرض من إعدادات الجوال، مع تنبيه لخيار "النصوص عالية التباين".</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <h3>مركز إعدادات شامل</h3>
+    <p>إعدادات منظمة لكل جزء: الفواتير، والسندات، والطباعة، والرسائل، والنسخ الاحتياطي، والذهب، والكاشير، والمظهر، وبيانات المنشأة وترويستها.</p>
+  </div>
+</section>
+
+<!-- ======================= PRICING ======================= -->
+<section class="page-break">
+  <div class="section-title">التفعيل والاشتراك والدعم</div>
+  <div class="grid2 keep">
+    <div class="free-card"><div class="amount">250</div><div style="font-family:Cairo;font-weight:800;font-size:13pt">عملية مجانية</div><p class="small" style="margin-top:2mm">جرّب كل ميزات التطبيق على بياناتك الحقيقية قبل أن تدفع أي شيء.</p></div>
+    <div class="price-card"><div class="amount">10$</div><div class="per" style="font-family:Cairo;font-weight:800;font-size:13pt">سنوياً</div><p style="margin-top:2mm;font-size:10pt;opacity:.9">رسوم تفعيل لاستمرار الاستخدام بعد الفترة التجريبية.</p></div>
+  </div>
+
+  <div class="feature mt" style="border-right-color:var(--blue)">
+    <h3>كيف يعمل التفعيل؟</h3>
+    <ul>
+      <li>بعد التثبيت تتوفر <b>250 عملية</b> كفترة تجريبية.</li>
+      <li>التفعيل لمدة سنة، ويمكنك خلالها <b>تغيير الجهاز دون أي رسوم</b>: أرسل كود التفعيل للجهاز الجديد ليُفعَّل بدل القديم.</li>
+      <li>قد تُضاف رسوم تحويل بقيمة 2$ للدفع من خارج الجمهورية اليمنية.</li>
+      <li><b>التفعيل لا علاقة له ببياناتك:</b> لا يحذفها ولا يطّلع عليها.</li>
+    </ul>
+  </div>
+
+  <div class="feature" style="border-right-color:var(--blue)">
+    <h3>خصوصية بياناتك</h3>
+    <p>بياناتك مخزنة على جهازك وفي نسخك الاحتياطية فقط. لا يخزنها مطوّر التطبيق ولا يطّلع عليها ولا يملك صلاحية عليها، ولذلك احرص على النسخ الاحتياطي اليومي والسحابي.</p>
+  </div>
+
+  <div class="feature" style="border-right-color:var(--orange)">
+    <h3>الشرح والدعم</h3>
+    <p>شرح متكامل لاستخدام التطبيق بالفيديو على قناة <b>المحاسب الذكي برو</b> في يوتيوب. نستقبل اقتراحاتكم وملاحظاتكم دائماً، والتحديثات مستمرة.</p>
+    <p class="small">حمّل التطبيق من متجر Google Play فقط، فلسنا مسؤولين عن أي نسخة من مصدر آخر.</p>
+  </div>
+</section>
+
+<!-- ======================= BACK ======================= -->
+<section class="page-break back">
+  <div class="logo-wrap"><img src="img/logo.png" alt=""></div>
+  <h2>المحاسب الذكي برو</h2>
+  <p>أنجز أعمالك بسرعة ودقة وسهولة.<br>حسابات، فواتير، مخازن، تقارير، وطباعة ورسائل في تطبيق واحد.</p>
+  <div class="cta">حمّل التطبيق الآن من Google Play</div>
+</section>
+
+</body>
+</html>
