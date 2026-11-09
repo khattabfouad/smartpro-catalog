@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>المحاسب الذكي برو — كتالوج النظام</title>
 <style>
 @font-face { font-family: "Cairo"; src: url("cairo.ttf"); font-weight: 200 1000; }
@@ -171,6 +172,43 @@ table.t tr:nth-child(even) td { background: #F8FAFC; }
 .back .cta { margin-top: 8mm; background: var(--orange); padding: 3mm 10mm; border-radius: 20mm; font-family: "Cairo"; font-weight: 800; font-size: 13pt; }
 .small { font-size: 9pt; color: var(--muted); }
 .mt { margin-top: 4mm; }
+
+/* ---------- Screen (web page) only: print/PDF layout is untouched ---------- */
+@media screen {
+  html { background: #E9EEF4; }
+  body { max-width: 820px; margin: 0 auto; padding: 32px 40px 48px; background: #fff;
+         box-shadow: 0 0 30px rgba(16,42,67,.10); overflow-x: hidden; }
+  section { margin-bottom: 28px; }
+  .cover { height: auto; min-height: 640px; padding: 48px 20px 90px; }
+  .sample .frame { cursor: zoom-in; position: relative; }
+  .sample .frame::after { content: "اضغط للتكبير"; position: absolute; bottom: 8px; left: 8px;
+         background: rgba(7,58,120,.85); color: #fff; font-family: "Cairo", sans-serif; font-size: 12px;
+         padding: 2px 10px; border-radius: 20px; pointer-events: none; }
+  .pdf-link { position: fixed; top: 14px; left: 14px; z-index: 50; background: var(--orange); color: #fff;
+         font-family: "Cairo", sans-serif; font-weight: 700; font-size: 14px; text-decoration: none;
+         padding: 6px 16px; border-radius: 30px; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
+  .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(10,20,35,.92); display: none;
+         align-items: flex-start; justify-content: center; overflow: auto; padding: 56px 16px 24px; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: min(100%, 900px); height: auto; background: #fff; border-radius: 6px;
+         box-shadow: 0 10px 40px rgba(0,0,0,.4); }
+  .lightbox .close { position: fixed; top: 12px; right: 16px; color: #fff; font-size: 34px; line-height: 1;
+         background: none; border: 0; cursor: pointer; }
+}
+@media screen and (max-width: 700px) {
+  body { padding: 16px 16px 32px; box-shadow: none; }
+  .cover { min-height: 560px; border-radius: 4mm; padding-bottom: 32px; }
+  .cover h1 { font-size: 26pt; }
+  .cover .cover-foot { position: static; margin-top: 24px; flex-wrap: wrap; justify-content: center; gap: 6px 16px; }
+  .pdf-link { top: auto; bottom: 14px; }
+  .grid3, .grid4 { grid-template-columns: 1fr 1fr; }
+  .grid2, .samples { grid-template-columns: 1fr; }
+  .flow { flex-wrap: wrap; }
+  .flow .node { flex: 1 1 40%; }
+  .part-page, .back { height: auto; min-height: 520px; padding-top: 40px; padding-bottom: 40px; }
+  table.t { display: block; overflow-x: auto; }
+}
+@media print { .pdf-link, .lightbox { display: none !important; } }
 </style>
 </head>
 <body>
@@ -931,5 +969,29 @@ table.t tr:nth-child(even) td { background: #F8FAFC; }
   <div class="cta">حمّل التطبيق الآن من Google Play</div>
 </section>
 
+
+<!-- Screen only: PDF link and tap-to-enlarge images (hidden in print) -->
+<a class="pdf-link" href="catalog.pdf" download>تحميل PDF</a>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="close" type="button" aria-label="إغلاق">&times;</button>
+  <img alt="">
+</div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox');
+  var big = box.querySelector('img');
+  function close() { box.classList.remove('open'); big.removeAttribute('src'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.sample .frame').forEach(function (frame) {
+    var img = frame.querySelector('img');
+    if (!img) return;
+    frame.addEventListener('click', function () {
+      big.src = img.getAttribute('src'); box.classList.add('open'); box.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  box.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+</script>
 </body>
 </html>
